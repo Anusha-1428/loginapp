@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: my-login-app
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodedb-app
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: nodedb-app
+    spec:
+      containers:
+      - name: nodedb-app
+        # Run this image
+        image: anusha304/demowindow:loginapp
+      - name: mongodb1
+        # Run this image
+        image: mongo:latest
